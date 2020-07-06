@@ -1,0 +1,2 @@
+# Notes
+ Various python notes
