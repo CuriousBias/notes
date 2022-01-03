@@ -161,13 +161,13 @@
 
     copy info to just above "exit0" in rc.local
 
-        sudo /sbin/iw wlan0 set power_save off
+        pi@raspberrypi:~ $ sudo /sbin/iw wlan0 set power_save off
 
     save file and exit (control+x, y, return)
 
     c. Reboot
 
-        sudo reboot now
+        pi@raspberrypi:~ $ sudo reboot now
 
 ### Install Pi-hole
 
@@ -185,7 +185,7 @@
 
     a. Install via curl
 
-        curl -sSL https://install.pi-hole.net | sudo bash
+        pi@raspberrypi:~ $ curl -sSL https://install.pi-hole.net | sudo bash
 
     b. Network add block: Ok
 
