@@ -28,7 +28,7 @@
 
     d. Select Write
 
-### Pi setup Method 2: ```Terminal```
+### Pi setup Method 2: Terminal
 
 1. Download image and rename to 'raspioslite.img' (or aything short) https://www.raspberrypi.com/software/operating-systems/
 
@@ -159,7 +159,7 @@
 
         pi@raspberrypi:~ % sudo nano /etc/rc.local
 
-    copy info to just baove "exit0" in rc.local
+    copy info to just above "exit0" in rc.local
 
         sudo /sbin/iw wlan0 set power_save off
 
@@ -171,9 +171,9 @@
 
 ### Install Pi-hole
 
-1. Establish ssh
+1. Establish ssh (root not necessary, root ssh worked on one, but not another)
 
-        foo@bar ~ % ssh root@raspberrypi.local (root?)
+        foo@bar ~ % ssh root@raspberrypi.local
 
 2. Check wlan0 connection
 
@@ -201,7 +201,7 @@
 
     h. Are these settings correct... : confirm they are accurate
 
-    i. Select cloudflare
+    i. Select upstream DNS provider: cloudflare
 
     j. Pi-hole relies on third party lists...: select StevenBlack or whatever is default
 
@@ -254,4 +254,4 @@
 
     d. Restart Google router Wifi > Setting cog > restart network
 
-    e. http://pi.hole/admin
+    e. To login with web interface password: http://pi.hole/admin
