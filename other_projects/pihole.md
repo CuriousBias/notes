@@ -255,3 +255,15 @@
     d. Restart Google router Wifi > Setting cog > restart network
 
     e. To login with web interface password: http://pi.hole/admin
+
+4. Add lists to block 
+
+    a. Lists to block can be found here: https://firebog.net
+
+    b. Login to web interface with web interface
+
+    c. Group Management > Adlist
+
+    d. Copy and paste as many urls into "Address" 
+
+    e. Update gravity list to implement changes (link under "Addresses")
