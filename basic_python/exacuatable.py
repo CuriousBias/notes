@@ -12,7 +12,8 @@ def f2(*numbers):
 
 
 # if __name__ == "__main__" checks to see if file __name__ (magic or dunder) is the __main__ 
-# Since it always is, proceeds to execute code below. 
+# Since it always is, proceeds to execute code below.
+# The line signals to other people that this is an executable .py file 
 
 if __name__ == "__main__":
 
