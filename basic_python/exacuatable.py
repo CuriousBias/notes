@@ -1,5 +1,8 @@
 import time
 
+def sample_import():
+    pass
+
 def f1(text):
     print(text)
 
