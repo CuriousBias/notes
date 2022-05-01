@@ -44,7 +44,7 @@ zsh default (short for Z shell)
 ### Symbolic links
 
 #### Add to PATH
-
+Add location for terminal to check if application exists
 To see all python links  ```% ls -la /usr/local/bin | grep python```
 
 1. .zprofile (sourced on login)

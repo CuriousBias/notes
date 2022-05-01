@@ -24,7 +24,7 @@ See installation.ipynb for installation process
 
 #### Applications
 - See possible formula  ```% brew search <name>```
-    ex: brew search python
+    ex: ```% brew search python```
 - Install an application  ```% brew install <formula>```
     ex: ```% brew install git```
 - See info of an application ```% brew info <formula>```
@@ -41,9 +41,27 @@ See installation.ipynb for installation process
 - Reverse above  ```% brew unpin <formula>```
 - Switch to different version ```% brew switch <formula version>```
 
-#### Repositories (but which repos are these?)
+#### Repositories
 - List current repositories  ```% brew tap```
 - Tap a formula repository from github for tap  ```% brew tap <user/repo>```
 - Tap a formula repository from a specific URL  ```% brew tap <user/repo/><URL>```
 - Remove a tap  ```% brew untap <user/repo>```
 
+## Locations
+Locations vary among hardware
+
+#### MacOS with M1 Silicon
+1. Applications are installed to ```% cd /opt/homebrew/Cellar```
+2. Cask applications are installed to ```% cd /opt/homebrew/Caskroom```
+
+#### MacOS with Intel
+1. Applications are installed to ```% cd /usr/local/Cellar```
+2. Cask applications are installed to ```% cd /usr/local/Caskroom```
+
+## Symlinks
+Symlinks seem to be added automatically now. 
+
+## Repositories
+- Repos you want homebrew to track (install and update)
+
+TODO: Installing vs cloning a repository
