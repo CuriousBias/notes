@@ -17,7 +17,7 @@ Example below assumes python install via homebrew
 This installs jupyter notebook via pip version associate with python installed at that directory
 
 ### From requirements.txt
-```% /opt/homebrew/opt/python/libexec/bin/python -m pip install -r Documents/github/Notes/environment/requirements.txt```
+```% python -m pip install -r Documents/github/Notes/environment/requirements.txt```
 
 ## Maintenance
 1. Update pip ```% python -m pip install --upgrade pip```

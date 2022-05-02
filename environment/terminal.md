@@ -47,8 +47,9 @@ zsh default (short for Z shell)
 Add location for terminal to check if application exists
 To see all python links  ```% ls -la /usr/local/bin | grep python```
 
-1. .zprofile (sourced on login)
-2. .zshrc (sourced when opening terminal)
+1. .profile (??)
+2. .zprofile (sourced on login)
+3. .zshrc (sourced when opening terminal)
 
 ##### Add to .zprofile
 1. Open .zprofile  ```% open ~ /.zprofile```

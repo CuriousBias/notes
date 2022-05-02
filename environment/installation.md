@@ -52,15 +52,19 @@ Uses package manager Homebrew https://brew.sh
 
 9. Install IDE ```% brew install --cask visual-studio-code```
 
-10. Pipenv ```% /opt/homebrew/opt/python/libexec/bin/python -m pip install pipenv```
-    - full python path not needed if python is mapped to desired version
+## Dependency location
+1. Global
+    - Go to pip.md
 
-#### Install dependencies
-
-Go to pip.ipynb
-
-#### Uninstalling
-``` % sudo rm -rf “/Applications/Python”
-    % sudo rm -rf /Library/Frameworks/Python.framework
-    % sudo rm -rf /usr/local/bin/python
-```
+2. Virtual environment (multiple options)
+    - better option if you are managing multiple projects.
+    - different projects may require different versions of the same dependency. 
+    a. venv
+        - defualt
+        - install dependencies with pip via requirements.txt
+    b. pipenv
+        - installed seperately ```% python -m pip install pipenv```
+        - dependencies managed in Pipfile
+        - go to virtual_environments.md
+    c. virtualenv
+        - another option
