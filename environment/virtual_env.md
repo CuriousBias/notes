@@ -1,25 +1,34 @@
-
-10. Pipenv ```% /opt/homebrew/opt/python/libexec/bin/python -m pip install pipenv```
-    - full python path not needed if python is mapped to desired version
-
-    ### Virtual environments
-
+# Virtual environments
+Used to manage dependencies on multiple projects
 https://docs.python-guide.org/dev/virtualenvs/#virtualenvironments-ref
 
-Create virtual environment 
+## venv
+added with python install by default
 
-        % python -m venv test
+#### venv commands
+1. Create virtual environment  ```% python -m venv test_env```
+2. Activate the environment ```% source test_env/bin/activate```
+3. Install whichever packages you want ```% pip install <package>```
+4. Install packages from environment ```% python -m install -r <dir>/requirements.txt```
+5. Run code ```% python ./Documents/test.py```
+6. Exit environment ``` % deactivate```
 
-Activate the environment
+## pipenv
+- More involved
+- Lets you set dependencies and lock them
+- Setup Pipfile and run it. 
 
-        % source test/bin/activate
-
-Install whichever packages you want 
-
-        % pip install numpy
-
-How do I access the environment in an IDE? 
-
-Exit environment
-
-        % exit
+1. Install pipenv ```% python -m pip install pipenv```
+2. First time run ```% pipenv install```
+        This will create ***Pipenv*** and ***Pipenv.lock***
+        ***Pipenv***
+3. Activate already created environment ```% pipenv shell```
+4. Install dependencies ```% pipenv install <package>```
+5. Install many ```% pipenv install -r <dir>/requirements.txt```
+6. Check security ```% pipenv check```
+7. Check dependencies ```% pipenev graph```
+8. Setup script
+        a. Add script to run to Pipfile by opening Pipfile and manually editing? 
+        b. Save changes
+9. Lock dependencies ```% pipevn lock -r```
+10. Execute ```% pipenev run server```
