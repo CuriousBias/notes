@@ -4,17 +4,12 @@ But if you need to install manually: https://git-scm.com/download/
 Current passphrase: "partha"
 
 ## SSH vs HTTPS
-Not really sure when to use HTTPS over SSH
 
 ### SSH
 - Store private key on local machine to login
+- Considered more secure
 
-### HTTPS
-- Not sure when to use over SSH
-- Generate **Personal Access Tokens** on github.com and then use as password to push changes to master
-- Tokens generated Github.com > Settings > Developer Settings > Personal Access Tokens > Generate New Token > Input info: Then use token as password
-
-## SSH Setup
+#### SSH key setup
 1. Check version ```% git --version```
 2. Set up username and email (is this needed?)
 ```
@@ -29,8 +24,8 @@ Not really sure when to use HTTPS over SSH
     4. enter passphrase "partha"
     5. Check config ```% open ~/.ssh/config```
     6. if not (The file /Users/you/.ssh/config does not exist) 
-        ```% touch ~/.ssh/config # create the file```
-        ```% ssh-add -K ~/.ssh/id_rsa # add key to agent```
+        ```% touch ~/.ssh/config``` # create the file
+        ```% ssh-add -K ~/.ssh/id_rsa``` # add key to agent
 
 5. copy ssh key to github account (Copies the contents of the id_rsa.pub file to your clipboard) ```% pbcopy < ~/.ssh/id_rsa.pub```
 
@@ -38,6 +33,15 @@ Not really sure when to use HTTPS over SSH
 
 7. Test your key ```% ssh -T git@github.com # Attempts to ssh to GitHub```
 
-## Clone via SSH
+#### Clone via SSH
 
 To clone repo (get link from github Code > SSH > Copy) ```% git clone <ssh_repo_link>```
+
+### HTTPS 
+- (Personal Access Token or just Token)
+- Unique to git
+- Has advantage of having limited scope. 
+
+#### Token setup
+- Generate **Personal Access Tokens** on github.com and then use as password to push changes to master
+- Tokens generated Github.com > Settings > Developer Settings > Personal Access Tokens > Generate New Token > Input info: Then use token as password
