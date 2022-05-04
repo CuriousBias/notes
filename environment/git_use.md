@@ -93,10 +93,15 @@ Issues ran into so far
 
 - Remove last commit (not pushed)
     - Moves 1 commit from committed to staged ```% git reset --soft ~HEAD1```
-    - Moves 1 commit from committed to unstaged ```% git reset --hard ~HEAD2```
+    - Moves 1 commit from committed to un-staged ```% git reset --hard ~HEAD2```
 
 - Remove specific commit (pushed) ```% git revert <commit_hash>```
     - Find commit hash in git history
 
 ## Errors
 - "error: cannot lock ref" ```% git gc --prune=now```
+
+## Best practices
+- Think of adding code in commits. 
+    - Bundle all changes to related code into one commit. Do not modify different functionality across many commits. 
+- Working across multiple branches. Share code by cherry picking. 

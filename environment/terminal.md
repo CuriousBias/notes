@@ -2,7 +2,7 @@
 
 zsh default (short for Z shell)
 
-### Navigating
+## Navigating
 
 - lists folders in current directory  ```% ls``` 
 - lists all folders in directory as a list  ```% ls -l```
@@ -13,16 +13,40 @@ zsh default (short for Z shell)
 - go back up one level ```% cd ..```
 - to open files  ```% open <file>```
 
-#### Vim text editor
+### Stuck terminal
+- Closing terminal not a good idea if editing a file. Will save partially edited file and cause problems. 
+- Useful if script is stuck. 
+- Restarting computer should fix most issues from closed terminal. 
+
+### Vim text editor
 
 - to make edits: enter insert mode with ```i```
 - return to command mode with: "esc"
 - to abandon changes and exit (Quit and Abandon) ```:qa! + enter ```
 - to save changes (Write and Quit) ```:wq! + enter```
 
-#### Root access
+### Root access
 1. For root access  ```% sudo -i```
-2. To leave root  ```% root# exit```
+2. To leave root  ```% root```
+
+## Python in terminal
+
+### Run python files from terminal
+
+run the test.py file located in Documents  ```% python ./Documents/test.py```
+
+Or enter python interactive shell  ```% python```
+
+And then run test.py
+
+```python
+exec(open("./Documents/test.py").read())
+```
+
+### Keyboard interrupt
+- Used to interrupt python script  "command" + "c"
+- Works by raising an exception in the next line of code
+        - Does not work if script is stuck on one line and does not proceed. 
 
 ## PATH
 
@@ -61,19 +85,7 @@ To see all python links  ```% ls -la /usr/local/bin | grep python```
 2. Add: export PATH="/opt/homebrew/opt/python/libexec/bin:$PATH"
 3. cmd + save, exit
 
-## Python in terminal
 
-#### run python files from terminal
-
-run the test.py file located in Documents  ```% python ./Documents/test.py```
-
-Or enter python interactive shell  ```% python```
-
-And then run test.py
-
-```python
-exec(open("./Documents/test.py").read())
-```
 
 #### full absolute path
 
