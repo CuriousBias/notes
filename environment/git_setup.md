@@ -11,7 +11,7 @@ Current passphrase: "partha"
 
 #### SSH key setup
 1. Check version ```% git --version```
-2. Set up username and email (is this needed?)
+2. Set up username and email (good idea, not sure why I have gotten away without it)
 ```
     % git config --global user.name "Kurt"
     % git config --global user.email "kurt.partha@gmail.com"

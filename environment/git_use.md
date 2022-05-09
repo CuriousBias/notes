@@ -36,13 +36,24 @@ Some notes for working with git
 
 ### Rebase
 Reorders commits to be in order at current head of master
-1. Checkout master ```% git checkout master```
-2. Updated to latest version of master ```% git pull origin master```
-3. Switch to feature branch ```% git switch <feature_branch>```
-4. Initiate rebase ```% git rebase master```
-        - go through rebase steps
-5. Save any changes (shouldn't there be no changes?)
-6. Don't forget to force **Push** changes ```% git push -f```
+1. Rebase onto another branch (usually master)
+- This will keep all commits intact
+    1. Checkout master ```% git checkout master```
+    2. Updated to latest version of master ```% git pull origin master```
+    3. Switch to feature branch ```% git switch <feature_branch>```
+    4. Initiate rebase ```% git rebase master```
+            - go through rebase steps
+    5. Save any changes (shouldn't there be no changes?)
+    6. Don't forget to force **Push** changes ```% git push -f```
+2. Interactive rebase
+- This has many options. One is to squash commits (reduce number)
+    1. Same first 3 steps to checkout, pull origin and switch to feature
+    2. Initiate rebase ```% git rebase -i master```
+    3. replace "pick" with "s" for squash at beginning of each commit. 
+        - But leave the first commit as "pick" or change to "r" to edit message
+    4. Follow along in text edit (Vim)
+    5. "esc" + ":wq" to write and quit Vim editor. 
+    6. Don't forget to force **Push** changes ```% git push -f```
 
 ## Branches
 

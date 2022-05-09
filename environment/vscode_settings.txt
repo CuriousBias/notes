@@ -12,5 +12,7 @@ settings.json
     "python.linting.enabled": true,
     "python.linting.pylintEnabled": true,
     "python.linting.pycodestyleEnabled": true,
-    "python.linting.pycodestyleArgs": ["--max-line-length=100"]
+    "python.linting.pycodestyleArgs": ["--max-line-length=100"],
+    "files.autoSave": "afterDelay",
+    "files.autoSaveDelay": 1000
 }
