@@ -48,7 +48,8 @@ Reorders commits to be in order at current head of master
 2. Interactive rebase
 - This has many options. One is to squash commits (reduce number)
     1. Same first 3 steps to checkout, pull origin and switch to feature
-    2. Initiate rebase ```% git rebase -i master```
+    2. Initiate rebase ```% git rebase -i HEAD~5``` (5 for five commits)
+        Can also just do squash and rebase in one step with ```% git rebase -i master```
     3. replace "pick" with "s" for squash at beginning of each commit. 
         - But leave the first commit as "pick" or change to "r" to edit message
     4. Follow along in text edit (Vim)
@@ -61,6 +62,10 @@ Reorders commits to be in order at current head of master
 #### Two options
 1. Old command ```% git checkout <branch>```
 2. New command ```% git switch <branch>```
+
+### See difference between two branches
+- ```% git log <branch> ^<master>```
+- escape from long printout with ":" followed by "q"
 
 ### Sharing between branches
 - To checkout a single file from a different branch (bad) ```% git checkout <feature/branch> --<specific/file/path>```
