@@ -1,12 +1,14 @@
-Extensions
+# Visual Studio Code
+
+## Extensions
 - Python
 - Pylance
 - Jupyter
 - Code Spell Checker
 - Git Graph
 
-
-settings.json
+## settings.json
+```json
 
 {
     "python.linting.enabled": true,
@@ -16,3 +18,4 @@ settings.json
     "files.autoSave": "afterDelay",
     "files.autoSaveDelay": 1000
 }
+```

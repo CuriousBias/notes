@@ -13,6 +13,14 @@ zsh default (short for Z shell)
 - go back up one level ```% cd ..```
 - to open files  ```% open <file>```
 
+### Other terminal commands
+- create a file ```% touch file.txt```
+- open file in default ```% open file.txt```
+- open in sublime text ```% subl file.txt```
+- delete a file ```% rm file.txt```
+- delete a directory ```% rm -r /path/to/delete```
+- move directory or file and rename ```% mv old/path/old_name.py new/path/new_name.py```
+
 ### Stuck terminal
 - Closing terminal not a good idea if editing a file. Will save partially edited file and cause problems. 
 - Useful if script is stuck. 
