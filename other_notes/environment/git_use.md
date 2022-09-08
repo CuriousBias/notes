@@ -45,8 +45,7 @@ Reorders commits to be in order at current head of master
             - go through rebase steps
     5. Save any changes (shouldn't there be no changes?)
     6. Don't forget to force **Push** changes ```% git push -f```
-2. Interactive rebase
-- This has many options. One is to squash commits (reduce number)
+2. Simple interactive rebase to squash commits (reduce number)
     1. Same first 3 steps to checkout, pull origin and switch to feature
     2. Initiate rebase ```% git rebase -i HEAD~5``` (5 for five commits)
         Can also just do squash and rebase in one step with ```% git rebase -i master```
@@ -55,6 +54,23 @@ Reorders commits to be in order at current head of master
     4. Follow along in text edit (Vim)
     5. "esc" + ":wq" to write and quit Vim editor. 
     6. Don't forget to force **Push** changes ```% git push -f```
+3. Complex interactive rebase to resolve merge conflicts (due to two people working on same file)
+    1. Navigate to repository
+    2. Checkout master ```% git checkout master```
+    3. Updated to latest version of master ```% git pull origin master```
+    4. Switch to feature branch ```% git switch <feature_branch>```
+    5. Do simple interactive rebase to squash all commits of feature branch into one commit. 
+    6. Initiate rebase ```% git rebase master```
+    6. Go through files to resolve each conflict individually. 
+        1. <<<<<<
+           edits
+           ======
+           more edits
+           >>>>>>
+        2. Go through and remove all markers and unwanted code. Save each file
+           - This will look like deleting all text between <<<<<< and ====== or ===== and >>>>>> . One or other, not both!
+        3. Make a new commit to save changes. ```% git commit -a -m "resolve merge conflicts```
+        4. Don't forget to force **Push** changes ```% git push -f```
 
 ## Branches
 
@@ -115,7 +131,9 @@ Issues ran into so far
     - Find commit hash in git history
 
 ## Errors
-- "error: cannot lock ref" ```% git gc --prune=now```
+- "error: cannot lock ref". Two commands to fix for slightly different situations.
+1. ```% git gc --prune=now```
+2. ```git remote prune origin```
 
 ## Best practices
 - Think of adding code in commits. 
