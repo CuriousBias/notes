@@ -1,15 +1,29 @@
 # Git
-Some notes for working with git
 
 ## Structure and definitions
-- Git structure: Repo is repository
-- Working directory < Staging area < Local Repo (Head) < Remote Repo (Master) 
-- staged: files with changes are marked to be committed to local repo
-- modified: files with changes are not yet stored in local repo
-- committed: changes are stored in local repo
+- Working directory < Staging area < Local Repo (HEAD) < Remote Repo (master) 
 
-## Git commands
+### Best practices
+- Think of adding code in commits. 
+    - Bundle all changes to related code into one commit. Do not modify different functionality across many commits. 
+- Working across multiple branches. Share code by cherry picking. 
+
+### General commands
 - To check status ```% git status```
+- To see current branch ```% git branch```
+
+## Levels
+1. Modified: files with changes are not yet stored in local repo
+2. Staged: files with changes are marked to be committed to local repo
+3. Committed: changes are stored in local repo
+4. Pushed: changes are store on remote repo
+
+### Modify
+- Just make usual edits to your local directory.
+- Add files ```% touch file_name.txt```
+- Remove files ``` % rm file_name.txt```
+- Remove directories ```% rm -r <specific/directory>```
+- Changes to existing files: make edits and **save** them!
 
 ### Stage
 - To add file from local directory to staging area ```% git add <specific/file/path>```
@@ -17,22 +31,47 @@ Some notes for working with git
     - Un-stage everything ```% git restore .```
 
 ### Commit
+#### Create a commit
 - To move files from staging area to local repo ```% git commit```
     - Commit all changes with message inline```% git commit -a -m "commit message"```
     - -a This will commit everything (no need for git add first)
     - -m Adds message for commit so no need to open text editor
 
+#### Remove a commit **Need to verify**
+- Remove last commit (not pushed)
+    - Moves 1 commit from committed to staged status ```% git reset --soft ~HEAD1```
+    - Moves 1 commit from committed to modified status ```% git reset --hard ~HEAD1```
+    - Remove all local commits and reset to version on remote ```% git reset --hard origin/main```
+
 ### Push
 - To add files committed files from local repo to remote repo ```% git push```
+- Remove specific commit (pushed) ```% git revert <commit_hash>```
+    - Find commit hash in git history  ```% git log```
 
 ### Pull
 - To get files from remote repo to local repo ```% git fetch```
 - To get files from local repo to working directory ```% git merge```
 - To get from from remote repo to working directory (git fetch and git merge at once) ```% git pull```
 
-### Delete
-- Delete files ```% git rm <specific/file/path>```
-- Delete directories ```% git rm -r <specific/directory>```        
+## Branches
+
+### Create new feature branch from repo
+```
+    % git checkout master
+    % git pull origin master
+    % git checkout -b <feature/branch>
+    % git add -a -m "commit some change"
+    % git push -set-upstream origin <feature/branch>
+```
+
+### Go to a different branch
+#### Two options
+1. Old command ```% git checkout <branch>```
+2. New command ```% git switch <branch>```
+
+### See difference between two branches
+- ```% git log <branch> ^<master>```
+- escape from long printout with ":" followed by "q"
 
 ### Rebase
 Reorders commits to be in order at current head of master
@@ -72,17 +111,6 @@ Reorders commits to be in order at current head of master
         3. Make a new commit to save changes. ```% git commit -a -m "resolve merge conflicts```
         4. Don't forget to force **Push** changes ```% git push -f```
 
-## Branches
-
-### Go to a different branch
-#### Two options
-1. Old command ```% git checkout <branch>```
-2. New command ```% git switch <branch>```
-
-### See difference between two branches
-- ```% git log <branch> ^<master>```
-- escape from long printout with ":" followed by "q"
-
 ### Sharing between branches
 - To checkout a single file from a different branch (bad) ```% git checkout <feature/branch> --<specific/file/path>```
 - To grab a specific commit (good) ```% git cherrypick <commit_hash>```
@@ -102,13 +130,6 @@ Reorders commits to be in order at current head of master
 4. Add any local files ```% git add files.py```
 5. Add all local files ```% git add .```
 
-### Create new feature branch from repo
-```
-    % git checkout master
-    % git pull origin master
-    % git checkout -b <feature/branch>
-```
-
 ## Pull Requests
 
 ### Prior to merging Pull request
@@ -118,24 +139,8 @@ Reorders commits to be in order at current head of master
 4. Force push changes
 3. Start Pull Request
 
-## Troubleshooting
-Issues ran into so far
-
-### Undo commits  **Need to verify**
-
-- Remove last commit (not pushed)
-    - Moves 1 commit from committed to staged ```% git reset --soft ~HEAD1```
-    - Moves 1 commit from committed to un-staged ```% git reset --hard ~HEAD2```
-
-- Remove specific commit (pushed) ```% git revert <commit_hash>```
-    - Find commit hash in git history
-
 ## Errors
 - "error: cannot lock ref". Two commands to fix for slightly different situations.
 1. ```% git gc --prune=now```
 2. ```git remote prune origin```
 
-## Best practices
-- Think of adding code in commits. 
-    - Bundle all changes to related code into one commit. Do not modify different functionality across many commits. 
-- Working across multiple branches. Share code by cherry picking. 
