@@ -52,6 +52,7 @@
 - To get files from remote repo to local repo ```% git fetch```
 - To get files from local repo to working directory ```% git merge```
 - To get from from remote repo to working directory (git fetch and git merge at once) ```% git pull```
+- To abort merge conflicts ```% git reset --hard HEAD```
 
 ## Branches
 
@@ -101,11 +102,14 @@ Reorders commits to be in order at current head of master
     5. Do simple interactive rebase to squash all commits of feature branch into one commit. 
     6. Initiate rebase ```% git rebase master```
     6. Go through files to resolve each conflict individually. 
-        1. <<<<<<
-           edits
-           ======
-           more edits
-           >>>>>>
+        1. Find merge conflics
+            ```
+            <<<<<<
+            edits
+            ======
+            other edits
+            >>>>>>
+            ```
         2. Go through and remove all markers and unwanted code. Save each file
            - This will look like deleting all text between <<<<<< and ====== or ===== and >>>>>> . One or other, not both!
         3. Make a new commit to save changes. ```% git commit -a -m "resolve merge conflicts```
@@ -139,8 +143,13 @@ Reorders commits to be in order at current head of master
 4. Force push changes
 3. Start Pull Request
 
+## Merge
+
+
 ## Errors
-- "error: cannot lock ref". Two commands to fix for slightly different situations.
-1. ```% git gc --prune=now```
-2. ```git remote prune origin```
+1. "error: cannot lock ref". Two commands to fix for slightly different situations.
+    1. ```% git gc --prune=now```
+    2. ```git remote prune origin```
+2. Branch diverged after rebase on a different machine. ``` % git fetch && git reset --hard```
+
 
