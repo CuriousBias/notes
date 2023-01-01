@@ -13,7 +13,7 @@ Current passphrase: "partha"
 1. Check version ```% git --version```
 2. Set up username and email (good idea, not sure why I have gotten away without it)
 ```
-    % git config --global user.name "Kurt"
+    % git config --global user.name "kurt"
     % git config --global user.email "kurt.partha@gmail.com"
 ```
 3. Check ```% git config --global --list```
