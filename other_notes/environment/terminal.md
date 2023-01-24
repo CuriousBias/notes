@@ -93,6 +93,9 @@ To see all python links  ```% ls -la /usr/local/bin | grep python```
 2. Add: export PATH="/opt/homebrew/opt/python/libexec/bin:$PATH"
 3. cmd + save, exit
 
+##### To restart terminal
+1. Re source files ```% source ~/.zshrc```
+
 
 
 #### full absolute path
