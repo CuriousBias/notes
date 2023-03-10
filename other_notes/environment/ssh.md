@@ -1,0 +1,129 @@
+# SSH
+- Secure SHell
+- Cryptographic protocol to securely share data.
+- Also used in file transfer tools.
+- One of few protocols freely allowed through firewalls!
+
+
+## SSH Protocol
+- Secures connection betwen client and server.
+- All authentication, commands, output, and file transfers are encrypted.
+
+### Connection flow
+1. Client --> Server: Client initiates the connection by contacting the server.
+2. Client <-> Server: **Server authentication**: Negotiate protocol, parameters, algorithm, Proof of possession. Also generate one-time session keys. 
+3. Client --> Server: **User authentication**: User login to server.
+
+#### Server authentication 
+1. Client sends random value to server.
+2. Proof of possession: Server responds with public key and signature of random value.
+3. Client computes signature to see if they match. This proves server has private key to match its public key. 
+4. If client has public key stored, then it knows it talked to this host previously.
+
+### Processes
+
+#### sshd
+- SSH server process
+- Usually located at ```/usr/sbin/sshd```
+- Starts when system boots
+- Listens for incoming connections and handles authentications, encryption, connections, file transfers, and tunneling.
+
+#### ssh
+- Used to establish a connection
+- Checks both client config files. 1st checks ```.ssh/config```, 2nd checks ```etc/ssh/ssh_config```. Uses 1st value found.
+- Uses port 22
+
+#### ssh-agent
+- Holds private keys in memory and can use them to authenticate logins
+
+### Implimentations
+1. OpenSSH: Server for Unix, Linux
+2. PuTTY: Client for windows and linux
+3. Many others: 
+
+## SSH keys
+- Access credentials for authenticating users
+- Similar to username and passwords, but more useful for automated processes and single-sign-on systems. 
+- Are cyrptographic keys, but are managed more as authentication credentials. 
+
+### User keys
+- Used for authenticating users
+1. Authorized keys
+    - Is a public key
+    - Used to verify digial signature
+    - Can be easily derived from private key
+2. Identity keys
+    - Is a private key
+    - Used to sign data
+
+### Host keys
+- Similar public/private key combination as User keys
+- Used for host authenticating computers.
+- Prevent man-in-the-middle attacks.
+- Remembered after first login to a host - known host keys stored in ```<user>/.ssh/known_hosts```
+- Stored long term means can be compromised. Overall connection is not compromised because session keys kept secret!
+
+### Session keys
+- Used to encrypt bulk of data in a connection.
+- Negotiated when connection is established.
+- Usually consist of encryption algorithm and message authentication code algorithm
+
+
+## Files
+- Unix style on MacOS using OpenSSH
+- Each line with # is interpreted as a comment.
+
+### /user/.ssh
+
+#### .ssh/config
+- First configuration file for client side
+
+#### .ssh/authorized_keys
+- Allows server to authenticate users
+- List of public keys which can be used for logging into this system.
+- This directory is normal location. However, at companies, this file is usually moved to root-owned locations to prevent self-provisioning by normal users.
+
+#### .ssh/id_*
+- Private keys; either id_rsa, id_ecdsa, id_dsa, or id_
+
+#### .ssh/id_*.pub
+- Public keys; similar to private keys above. 
+
+#### .ssh/id_*-cert.pub
+- 
+
+#### .ssh/known_hosts
+- Allows client to authenticate server
+- List of known 
+
+### /etc/ssh/
+- Directory contains this machine's host key pairs. 
+- Also contains files below:
+
+#### /etc/ssh/ssh_config
+- Second configuration file for client side
+
+#### /etc/ssh/sshd_config
+- Configuration file for server side sshd process
+- Specifies locations of host_keys and authorized_keys
+
+```
+PubkeyAuthentication yes  # Allows public key authentication
+```
+
+## Setup
+
+ssh-keygen
+- generates public and private key pair
+
+- Instal public key to server: ```ssh-copy-id -i ~.ssh/id_rsa.pub user@host``` 
+- Test install: ```ssh -i ~.ssh/id_rsa.pub user@host```
+
+### Use
+
+ssh -v <host>
+- Verbose, provides more information
+
+### Root login
+- Seperate privilaged access.
+- May need to run sudo anyways after login to execute commands
