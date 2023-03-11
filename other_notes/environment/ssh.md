@@ -11,14 +11,20 @@
 
 ### Connection flow
 1. Client --> Server: Client initiates the connection by contacting the server.
-2. Client <-> Server: **Server authentication**: Negotiate protocol, parameters, algorithm, Proof of possession. Also generate one-time session keys. 
-3. Client --> Server: **User authentication**: User login to server.
+2. Client <-> Server: **Server authentication** Proof of possession by host (process uses both parties host keys).
+2. Client <-> Server: : Negotiate protocol, parameters, algorithm, generate one-time session keys, etc.
+3. Client --> Server: **Clien authentication**: Proof of possession by client.
 
-#### Server authentication 
-1. Client sends random value to server.
-2. Proof of possession: Server responds with public key and signature of random value.
+#### Proof of possession (by host)
+1. Client sends challenge value to server.
+2. Server responds with public key and signature of challenge value.
 3. Client computes signature to see if they match. This proves server has private key to match its public key. 
 4. If client has public key stored, then it knows it talked to this host previously.
+
+#### Client authentication
+- Client needs to prove they have right to access account.
+    1. Proof can be password to account.
+    2. Similar proof of possession to check against user public key stored in "authorized_keys" of server. 
 
 ### Processes
 
@@ -123,6 +129,10 @@ ssh-keygen
 
 ssh -v <host>
 - Verbose, provides more information
+
+### Remove known hosts
+1. Delete file (a bit crude): ```rm -f ~/.ssh/known_hosts```
+2. Remove individual host keys: ```ssh-keygen -R <host>```
 
 ### Root login
 - Seperate privilaged access.
