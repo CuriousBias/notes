@@ -124,6 +124,7 @@ ssh-keygen
 
 - Instal public key to server: ```ssh-copy-id -i ~.ssh/id_rsa.pub user@host``` 
 - Test install: ```ssh -i ~.ssh/id_rsa.pub user@host```
+- Interpret private key to generate public key: ```ssh-keygen -y -e -f .ssh/<private_key>```
 
 ### Use
 
