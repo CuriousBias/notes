@@ -4,7 +4,6 @@
 - Also used in file transfer tools.
 - One of few protocols freely allowed through firewalls!
 
-
 ## SSH Protocol
 - Secures connection betwen client and server.
 - All authentication, commands, output, and file transfers are encrypted.
@@ -17,14 +16,14 @@
 
 #### Proof of possession (by host)
 1. Client sends challenge value to server.
-2. Server responds with public key and signature of challenge value.
-3. Client computes signature to see if they match. This proves server has private key to match its public key. 
+2. Server responds with public key (host_key) and signature of challenge value.
+3. Client computes signature to see if they match. This proves server has private key (host_key) to match its public key. 
 4. If client has public key stored, then it knows it talked to this host previously.
 
 #### Client authentication
 - Client needs to prove they have right to access account.
     1. Proof can be password to account.
-    2. Similar proof of possession to check against user public key stored in "authorized_keys" of server. 
+    2. Similar proof of possession to check against public key (user_key) stored in "authorized_keys" of server. 
 
 ### Processes
 
