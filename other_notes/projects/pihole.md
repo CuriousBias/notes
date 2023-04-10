@@ -20,30 +20,30 @@
 
 4. Enter hidden menu (command+shift+x)
 
-    a. Check 'Set hostname', enter desired hostname for your pi
+    a. Check 'Set hostname', enter desired hostname
 
-    b. Check 'Enable SSH', enter desired password for accessing your pi
+    b. Check 'Enable SSH' with password authentication, enter desired username and password
 
-    c. Check 'Configure wifi', enter SSID and Password, select country, save
+    c. Check 'Configure wireless LAN', enter SSID and Password, select country, save
 
     d. Select Write
 
-### Pi setup Method 2: Terminal
+### Pi setup Method 2: Terminal (Not working anymore)
 
 1. Download image and rename to 'raspioslite.img' (or aything short) https://www.raspberrypi.com/software/operating-systems/
 
 2. View list of drives and note directory of SD card (Example: '/dev/disk4')
 
-        foo@bar ~ % diskutil list
+        user@host ~ % diskutil list
 
 3. Format SD Card to FAT32 and unmount
 
-        foo@bar ~ %diskutil eraseDisk FAT32 NONAME /dev/disk4
-        foo@bar ~ % diskutil unmountDisk /dev/disk4
+        user@host ~ %diskutil eraseDisk FAT32 NONAME /dev/disk4
+        user@host ~ % diskutil unmountDisk /dev/disk4
 
 4. Write OS image to SD card (after entering password, wait a while)
 
-        foo@bar ~ % sudo dd bs=1m if=Downloads/raspioslite.img of=/dev/disk4'
+        user@host ~ % sudo dd bs=1m if=Downloads/raspioslite.img of=/dev/disk4'
 
     This results in SD card renamed to 'boot'
 
@@ -54,34 +54,34 @@
 
 5. Create ssh file
 
-        foo@bar ~ % touch /Volumes/boot/ssh
+        user@host ~ % touch /Volumes/boot/ssh
 
 6. Create file to trigger avahi-daemon (allows usb tethering for ssh)
 
-        foo@bar ~ % touch /Volumes/boot/avahi
+        user@host ~ % touch /Volumes/boot/avahi
 
 7. Edit ```config.txt``` to enable dwc2
 
-        foo@bar ~ % cd /Volumes/boot
-        foo@bar boot % echo dtoverlay=dwc2 >> config.txt
+        user@host ~ % cd /Volumes/boot
+        user@host boot % echo dtoverlay=dwc2 >> config.txt
 
 8. Edit ```cmdline.txt```
 
-        foo@bar boot % open -a "TextEdit" cmdline.txt'
+        user@host boot % open -a "TextEdit" cmdline.txt'
 
     - insert 'modules-load=dwc2,g_ether' after "rootwait" (make sure to leave only one space after rootwait and one space after the inserted text)
     - save the file
 
 9. Create network info file
 
-        foo@bar ~ % touch /Volumes/boot/wpa_supplicant.conf
-        foo@bar ~ % open -a "TextEdit" /Volumes/boot/wpa_supplicant.conf
+        user@host ~ % touch /Volumes/boot/wpa_supplicant.conf
+        user@host ~ % open -a "TextEdit" /Volumes/boot/wpa_supplicant.conf
 
 10. Copy info to wpa_supplicant.conf (adjust country code, ssid, psk)
 
         ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
         update_config=1
-        country=<Country Code>
+        country=<us>
 
         network={
             ssid="<SSID>"
@@ -92,7 +92,7 @@
     Save and close file. 
 
 11. Eject SD card
-    foo@bar ~ % diskutil eject /dev/disk4
+    user@host ~ % diskutil eject /dev/disk4
 
 12. Boot raspberry pi
     a. Input SD card to raspberry pi
@@ -106,17 +106,17 @@
         default hostname: raspberrypi
         default password: raspberry
 
-        foo@bar ~ % ssh-keygen -R raspberrypi.local (not sure this is required)
+        user@host ~ % ssh-keygen -R raspberrypi.local (not sure this is required)
 
-        foo@bar ~ % ssh <username>@<hostname>.local
+        user@host ~ % ssh <username>@<hostname>.local
 
     Example
 
-        foo@bar ~ % ssh pi@raspberrypi.local
+        user@host ~ % ssh pi@raspberrypi.local
 
     If "WARNING: POSSIBLE DNS SPOOFING DETECTED!"
 
-        foo@bar ~ % rm -f /User/<username>/.ssh/known_hosts
+        user@host ~ % rm -f /User/<username>/.ssh/known_hosts
 
     Should see SSH enabled...
         pi@raspberrypi:~ $ 
@@ -148,24 +148,20 @@
 
 2. Other necessary pi settings
 
-    a. Disable avahi (this failed?)
-
-        pi@raspberrypi:~ $ systemctl disable avahi-daemon (permission denied?)
-
-    b.  Keep raspberry pi from going to sleep
+    a.  Keep raspberry pi from going to sleep
 
         pi@raspberrypi:~ % sudo /sbin/iw wlan0 set power_save off
         pi@raspberrypi:~ % iwconfig (confirm 'Power Management:off')
 
         pi@raspberrypi:~ % sudo nano /etc/rc.local
 
-    copy info to just above "exit0" in rc.local
+    copy info to just above "exit0" in rc.local (this ensures power_save is set to off on startup!)
 
-        pi@raspberrypi:~ $ sudo /sbin/iw wlan0 set power_save off
+        sudo /sbin/iw wlan0 set power_save off
 
     save file and exit (control+x, y, return)
 
-    c. Reboot
+    b. Reboot
 
         pi@raspberrypi:~ $ sudo reboot now
 
@@ -173,7 +169,7 @@
 
 1. Establish ssh (root not necessary, root ssh worked on one, but not another)
 
-        foo@bar ~ % ssh root@raspberrypi.local
+        user@host ~ % ssh root@raspberrypi.local
 
 2. Check wlan0 connection
 
@@ -217,7 +213,7 @@
 
     p. Shutdown raspberry pi
 
-        pi@raspberrypi:~ $ shutdown now
+        pi@raspberrypi:~ $ sudo shutdown now
 
     q. Disconnect from computer and plug into power supply.
 
@@ -240,7 +236,7 @@
 
 3. Configure Pi-hole web interface
 
-    a. http://192.168.86.10/admin/
+    a. http://192.168.1.10/admin/  (address may be different!)
 
     b. Select Login and enter password
 
@@ -266,4 +262,4 @@
 
     d. Copy and paste as many urls into "Address" 
 
-    e. Update gravity list to implement changes (link under "Addresses")
+    e. Update gravity list to implement changes. Sidebar > Tools > Upgrate Gravity > Upgrade
