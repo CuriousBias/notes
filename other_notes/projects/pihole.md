@@ -250,7 +250,7 @@
 
     d. Restart Google router Wifi > Setting cog > restart network
 
-    e. To login with web interface password: http://pi.hole/admin
+    e. To login with web interface password: http://pi.hole/admin or http://<ip>/admin
 
 4. Add lists to block 
 
