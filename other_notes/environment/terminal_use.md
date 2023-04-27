@@ -24,6 +24,7 @@
 - delete a directory ```% rm -r /path/to/delete```
 - move directory or file and rename ```% mv old/path/old_name.py new/path/new_name.py```
 - output file ```cat <file>```
+- Run python rom non-root directory ```% ./file.py```
 
 ## Random Tidbits
 
@@ -42,3 +43,6 @@
 - Closing terminal not a good idea if editing a file. Will save partially edited file and cause problems. 
 - Useful if script is stuck. 
 - Restarting computer should fix most issues from closed terminal. 
+
+### Secure Copy
+- Copy files from one host to another ```% scp user@host:/path/remote/file /path/local/file```
