@@ -1,9 +1,23 @@
-## Docker
+# Docker
 - Popular service for packaging, deploying, and running distributed and cloud native applications. 
 - Easy to automate infrastructure, isolate applications, maintain consistence and improve resource utilization.
-- Open source solution with enterprise tier. 
+- Open source solution with enterprise tier.
 
-### Architecture
+## Docker vs VM
+
+#### Docker
+- Virtual: Docker only virtualizes application layer
+- Size: ~1 - 10 MB.
+- Speed: fast to boot (ms)
+- OS: Linux kernel only
+
+#### VMs
+- Virtual: application layer + kernel. .  
+- Size: ~1 -10 GBs
+- Speed: slower (minutes)
+- OS: But is compatible with all OS.
+
+## Architecture
 - Client-server architecture and a remote API
 - Docker Image: template/recipe for creating docker containers. Includes steps for installing and running software.
 - Docker Container: Virtual machine running on docker host. 
@@ -13,7 +27,7 @@
 - Docker Machine: Utility to manage multiple Docker hosts (either local or remote).
 - Docker Daemon:
 
-### Running a Container:
+## Running a Container:
 1. Install Docker
 2. Run a container: Containers run from command line. 
 
@@ -29,7 +43,7 @@ To generate this message, Docker took the following steps:
  3. The Docker daemon created a new container from that image which runs the executable that produces the output you are currently reading.
  4. The Docker daemon streamed that output to the Docker client, which sent it to your terminal.
 
-### Workflow
+## Workflow
 1. Build image from Dockerfile (2 ways)
     1. Pull image from registry
         1. Visit any repository. 
@@ -59,7 +73,7 @@ To generate this message, Docker took the following steps:
     - Stop: ```% docker stop my-container```
     - Start ```% docker start my-container```
 
-### Networking Containers
+## Networking Containers
 - Docker automatically creates 3 networks. Will need to create a custom network.
 - View current docker networks ```% docker network ls```
 - Create user-defined network ```% docker network create my-network```
@@ -67,26 +81,26 @@ To generate this message, Docker took the following steps:
 - After container startup```% docker network connect my-network my-container```
 - During container startup with network (—network) ```% docker run —rm my-image —network my-network```
 
-### Mapping Volumes
+## Mapping Volumes
 In order to share directories between running container and host machine. To ensure data files persist and are backed up on host machine. 
 ```% docker run —name my-image -v /my/host/datadir:/var/lib/```
 
-### Tagging an Image
+## Tagging an Image
 Tag to add username, image name, and version number. ```% docker tag my-image username/image_name/version```
 
-### Push image to repository
+## Push image to repository
 1. Create Docker Hub account at https://hub.docker.com 
 2. Login to docker with username and password ```% docker login```
 3. Push image ```docker push username/my-image/version
 
-### Other helpful Commands
+## Other helpful Commands
 - List containers ```% docker ps -a```
 - Remove images ```% docker rm my-image```
 - List ports (3306 for MySQL or 80 for web server) ```% docker port my-container```
 - List processes in a container ```% docker top my-container```
 - Execute commands in a running container ```% docker exec my-container ls```
 
-### Dockerfile
+## Dockerfile
 - Primary way of creating an image
 - Instructions for installing and configuring software.
 - Any files in same directory will be used for build process. 
@@ -111,13 +125,13 @@ VOLUME: Creates a mount point
 USER: User to run RUN, CMD, and/or ENTRYPOINT instructions
 ```
 
-### Docker Machine
+## Docker Machine
 - Command line utility used to manage local or remote hosts.
 - “default” is created when installing Docker Toolbox
 - Local machines: VirtualBox instances
 - Remote machines: hosted on AWS, etc
 
-#### Commands
+### Commands
 - List machines ```% docker-machine ls```
 - Create machine ```% docker-machine create -d virtualbox my-machine```
 - Start machine ```% docker-machine start my-machine```
