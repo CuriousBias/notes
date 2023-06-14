@@ -84,7 +84,7 @@
 - First configuration file for client side
 
 #### .ssh/authorized_keys
-- Allows server to authenticate users
+- Allows sshd process to authenticate users accessing this system.
 - List of public keys which can be used for logging into this system.
 - This directory is normal location. However, at companies, this file is usually moved to root-owned locations to prevent self-provisioning by normal users.
 
@@ -99,7 +99,7 @@
 
 #### .ssh/known_hosts
 - Allows client to authenticate server
-- List of known 
+- List of known hosts which client can connect to
 
 ### /etc/ssh/
 - Directory contains this machine's host key pairs. 
@@ -111,18 +111,42 @@
 #### /etc/ssh/sshd_config
 - Configuration file for server side sshd process
 - Specifies locations of host_keys and authorized_keys
+- Many other settings here
 
 ```
 PubkeyAuthentication yes  # Allows public key authentication
 ```
 
-## Setup
+## Setup Features
 
-ssh-keygen
-- generates public and private key pair
+### Keys
 
-- Instal public key to server: ```ssh-copy-id -i ~.ssh/id_rsa.pub user@host``` 
-- Test install: ```ssh -i ~.ssh/id_rsa.pub user@host```
+- generates public and private key pair ```ssh-keygen```
+
+### Passwordless login
+Settings
+1. Allow PubKey authentication on server side
+    - In server side /etc/ssh/sshd_config file
+    ```
+    PubkeyAuthentication yes  # Allows public key authentication
+    ```
+2. Allow PubKey authenticatin on client side
+    - In clinet side /ect/ssh/config or /.ssh/config
+    ```
+    PubkeyAuthentication yes  # Allows public key authentication
+    ``` 
+
+### Root login
+Settings
+1. Allow root login on server side
+    - In server side /etc/ssh/sshd_config file
+    ```
+    PermitRootLogin yes
+    ```
+
+Steps
+1. Copy public key from client to server ```ssh-copy-id -i ~.ssh/id_rsa.pub user@host``` 
+2. Test install: ```ssh -i ~.ssh/id_rsa.pub user@host```
 - Interpret private key to generate public key: ```ssh-keygen -y -e -f .ssh/<private_key>```
 
 ### Use
