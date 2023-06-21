@@ -17,6 +17,7 @@
 ## Commands
 
 ### Files and directories
+- restart shell `exec "$SHELL"`
 - create a file ```% touch file.txt```
 - open file in default ```% open file.txt```
 - open in sublime text ```% subl file.txt```
