@@ -24,6 +24,7 @@ When executing shim, pyenv determines python version from 4 sources (in this ord
 2. Application specific `.python-version`. Set current direcotry file with `pyenv local`
 3. The first `.python-version` file found by searching each parent directory.
 4. The global `$(pyenv root)/version` file. Set by `pyenv global`
+ - remove global pyenv and go back to system: `pyenv global system`
 
 ### Installation location
 Each python version is installed into own directory under `$(pyenv root)/versions`
