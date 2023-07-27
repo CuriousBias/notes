@@ -63,10 +63,18 @@ data: |
 
 
 ## Import
+- `.safe_load()` contains a subset of load
+- `.load()` will parse even code execution stuff!
 
 ```python
 import yaml
 
-stream = open("file.yaml", 'r')
-dictrionary1 = yaml.load(stream)
+with open("file.yaml", 'r') as file:
+    yaml.safe_load(file)
 ```
+
+open function modes: open for indended use. 
+1. "r": read - error if does not exist
+2. "a": append - creates if does not exist
+3. "w": write - creates if does not exist
+4. "x": create - creates specified file, returns error if already exists.
