@@ -37,10 +37,12 @@
     - -a This will commit everything (no need for git add first)
     - -m Adds message for commit so no need to open text editor
 
-#### Remove a commit **Need to verify**
+#### Remove a commit
 - Remove last commit (not pushed)
-    - Moves 1 commit from committed to staged status ```% git reset --soft ~HEAD1```
-    - Moves 1 commit from committed to modified status ```% git reset --hard ~HEAD1```
+    - Move commit from commited to staged status `% git reset HEAD~`
+    - Need to verify:
+        - Moves commit from committed to staged status ```% git reset --soft ~HEAD1```
+        - Moves 1 commit from committed to modified status ```% git reset --hard ~HEAD1```
     - Remove all local commits and reset to version on remote ```% git reset --hard origin/main```
 
 ### Push
