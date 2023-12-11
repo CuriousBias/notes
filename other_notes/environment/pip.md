@@ -25,7 +25,6 @@ This installs jupyter notebook via pip version associate with python installed a
 3. Or just use homebrew `% brew update`
     - This will keep everything upto date
 
-
 ## Random
 
 ### Uninstall
