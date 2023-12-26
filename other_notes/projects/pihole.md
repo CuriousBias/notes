@@ -236,7 +236,7 @@
 
 3. Configure Pi-hole web interface
 
-    a. http://192.168.1.10/admin/  (address may be different!)
+    a. http://pi.hole/admin or http://192.168.1.10/admin/ (address depends on IP!)
 
     b. Select Login and enter password
 
@@ -250,9 +250,14 @@
 
     d. Restart Google router Wifi > Setting cog > restart network
 
-    e. To login with web interface password: http://pi.hole/admin or http://<ip>/admin
 
-4. Add lists to block 
+### Access Web Interface
+
+1. http://pi.hole/admin or http://192.168.1.10/admin/ (address depends on IP!)
+
+    b. Select Login and enter password
+
+2. Add lists to block 
 
     a. Lists to block can be found here: https://firebog.net
 
@@ -263,3 +268,11 @@
     d. Copy and paste as many urls into "Address" 
 
     e. Update gravity list to implement changes. Sidebar > Tools > Upgrate Gravity > Upgrade
+
+### Establish SSH connection (to update)
+
+1. ssh: `% ssh <username>@<hostname>.local`
+
+    a. ex: `ssh pi@ranchpi.local` or `ssh root@ranchpi.local`
+
+    b. This login needs to be confirmed. Either using incorrect password or incorrect username or hostname.
