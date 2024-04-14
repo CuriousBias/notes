@@ -65,7 +65,7 @@ Creates feature branch to avoid working on master
     git pull origin master
     git checkout -b <feature/branch>
     git add -a -m "commit some change"
-    git push -set-upstream origin <feature/branch>
+    git push --set-upstream origin <feature/branch>
 ```
 
 ### Merge feature branch onto master
@@ -122,13 +122,13 @@ Reorders commits to be in order at current head of master
     6. Initiate rebase `git rebase master`
     6. Go through files to resolve each conflict individually. 
         1. Find merge conflics
-            `
+            ```
             <<<<<<
             edits
             ======
             other edits
             >>>>>>
-            `
+            ```
         2. Go through and remove all markers and unwanted code. Save each file
            - This will look like deleting all text between <<<<<< and ====== or ===== and >>>>>> . One or other, not both!
         3. Make a new commit to save changes. `git commit -a -m "resolve merge conflicts`

@@ -29,5 +29,13 @@ This installs jupyter notebook via pip version associate with python installed a
 
 ### Uninstall
 Uinstall all pip packages
+
+#### Unix
 `% pip freeze | xargs pip uninstall -y`
 `% pip cache purge`
+
+#### Windows
+```powershell
+pip freeze > requirements.txt
+pip uninstall -r requirements.txt -y
+```
