@@ -161,3 +161,11 @@ ssh -v <host>
 ### Root login
 - Seperate privilaged access.
 - May need to run sudo anyways after login to execute commands
+
+
+SSH PubkeyAuthentication MacOS -> Windows
+Configure for password-less access
+authorized_keys or administrator_authorized_keys
+create new files: 
+C:\ProgramData\ssh> New-Item administrators_authorized_keys
+PS C:\Users\user\ssh> New-Item authorized_keys.
