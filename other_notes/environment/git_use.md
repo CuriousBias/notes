@@ -168,6 +168,14 @@ Undo rebase
 
 ## Merge
 
+## Renaming 
+
+### Branch
+1. Rename local  `git branch -m <old> <new>`
+2. Push to new remote branch  `git push -u origin <new>`
+3. Delete old remote  `git push origin --delete <old>`
+4. If deleting protected or default branch, will need to remove protections on remote host.
+
 ## Tags
 - Associate a commit with a searchable tag.
 - See tags `git fetch —tags` and `git tag -l`
