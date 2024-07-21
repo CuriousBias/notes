@@ -29,13 +29,13 @@
 
 #### sshd
 - SSH server process
-- Usually located at ```/usr/sbin/sshd```
+- Usually located at `/usr/sbin/sshd`
 - Starts when system boots
 - Listens for incoming connections and handles authentications, encryption, connections, file transfers, and tunneling.
 
 #### ssh
 - Used to establish a connection
-- Checks both client config files. 1st checks ```.ssh/config```, 2nd checks ```etc/ssh/ssh_config```. Uses 1st value found.
+- Checks both client config files. 1st checks `.ssh/config`, 2nd checks `etc/ssh/ssh_config`. Uses 1st value found.
 - Uses port 22
 
 #### ssh-agent
@@ -65,7 +65,7 @@
 - Similar public/private key combination as User keys
 - Used for host authenticating computers.
 - Prevent man-in-the-middle attacks.
-- Remembered after first login to a host - known host keys stored in ```<user>/.ssh/known_hosts```
+- Remembered after first login to a host - known host keys stored in `<user>/.ssh/known_hosts`
 - Stored long term means can be compromised. Overall connection is not compromised because session keys kept secret!
 
 ### Session keys
@@ -113,41 +113,34 @@
 - Specifies locations of host_keys and authorized_keys
 - Many other settings here
 
-```
+`
 PubkeyAuthentication yes  # Allows public key authentication
-```
+`
 
 ## Setup Features
 
 ### Keys
 
-- generates public and private key pair ```ssh-keygen```
+- generate public and private key pair `ssh-keygen`
+- copy public key to clip board  `cat ~/.ssh/id_ed25519.pub| pbcopy`
+- paste .pub key into remote host tool to add key (GitHub)
 
 ### Passwordless login
 Settings
 1. Allow PubKey authentication on server side
-    - In server side /etc/ssh/sshd_config file
-    ```
-    PubkeyAuthentication yes  # Allows public key authentication
-    ```
+    - In server side /etc/ssh/sshd_config file `PubkeyAuthentication yes`  # Allows public key authentication
 2. Allow PubKey authenticatin on client side
-    - In clinet side /ect/ssh/config or /.ssh/config
-    ```
-    PubkeyAuthentication yes  # Allows public key authentication
-    ``` 
+    - In clinet side /ect/ssh/config or /.ssh/config `PubkeyAuthentication yes`  # Allows public key authentication
 
 ### Root login
 Settings
 1. Allow root login on server side
-    - In server side /etc/ssh/sshd_config file
-    ```
-    PermitRootLogin yes
-    ```
+    - In server side /etc/ssh/sshd_config file `PermitRootLogin yes`
 
 Steps
-1. Copy public key from client to server ```ssh-copy-id -i ~.ssh/id_rsa.pub user@host``` 
-2. Test install: ```ssh -i ~.ssh/id_rsa.pub user@host```
-- Interpret private key to generate public key: ```ssh-keygen -y -e -f .ssh/<private_key>```
+1. Copy public key from client to server `ssh-copy-id -i ~.ssh/id_rsa.pub user@host` 
+2. Test install: `ssh -i ~.ssh/id_rsa.pub user@host`
+- Interpret private key to generate public key: `ssh-keygen -y -e -f .ssh/<private_key>`
 
 ### Use
 
@@ -155,8 +148,8 @@ ssh -v <host>
 - Verbose, provides more information
 
 ### Remove known hosts
-1. Delete file (a bit crude): ```rm -f ~/.ssh/known_hosts```
-2. Remove individual host keys: ```ssh-keygen -R <host>```
+1. Delete file (a bit crude): `rm -f ~/.ssh/known_hosts`
+2. Remove individual host keys: `ssh-keygen -R <host>`
 
 ### Root login
 - Seperate privilaged access.
