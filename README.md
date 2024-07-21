@@ -1,3 +1,5 @@
 # Notes
 
-Various notes.
+Various notes. 
+
+Now using xcode
