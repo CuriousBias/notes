@@ -1,5 +1,8 @@
 # Git
 
+### Concepts
+- HEAD: currently checked out commit.
+
 ## Structure and definitions
 - Working directory < Staging area < Local Repo (HEAD) < Remote Repo (master) 
 
@@ -20,14 +23,13 @@
 
 ### Modify
 - Just make usual edits to your local directory.
-- Add files `touch file_name.txt`
+- Create files `touch add file_name.txt`
 - Remove files ` rm file_name.txt`
 - Remove directories `rm -r <specific/directory>`
-- Changes to existing files: make edits and **save** them!
 
 ### Stage
-- To add file from local directory to staging area `git add <specific/file/path>`
-- To un-stage a specific file `git restore <specific/file/path>`
+- Add file from local directory to staging area `git add <specific/file/path>`
+- Un-stage a specific file `git restore <specific/file/path>`
     - Un-stage everything `git restore .`
 
 ### Commit
@@ -37,24 +39,30 @@
     - -a This will commit everything (no need for git add first)
     - -m Adds message for commit so no need to open text editor
 
-#### Remove a commit
+#### Remove a commit (local)
 - Remove last commit (not pushed)
     - Move commit from commited to staged status `git reset HEAD~`
     - Need to verify:
-        - Moves commit from committed to staged status `git reset --soft ~HEAD1`
-        - Moves 1 commit from committed to modified status `git reset --hard ~HEAD1`
-    - Remove all local commits and reset to version on remote `git reset --hard origin/main`
+        - Moves commit from committed to staged status: `git reset --soft HEAD~1`
+        - Moves 1 commit from committed to modified status: `git reset --hard HEAD~1`
+    - Remove all local commits and reset to version on remote: `git reset --hard origin/main`
 
 ### Push
+#### Push to remote
 - To add files committed files from local repo to remote repo `git push`
-- Remove specific commit (pushed) `git revert <commit_hash>`
+    
+#### Undo pushed commit (not actually removing commit, but creating new commit undoing changes).
+- Remove pushed commit: `git revert HEAD`
+- Remove specific commit (pushed): `git revert <commit_hash>`
     - Find commit hash in git history  `git log`
 
 ### Pull
-- To get files from remote repo to local repo `git fetch`
-- To get files from local repo to working directory `git merge`
-- To get from from remote repo to working directory (git fetch and git merge at once) `git pull`
-- To abort merge conflicts `git reset --hard HEAD`
+- Update local copy of remote repo: `git fetch`
+- Update actual local repo: `git merge`
+- Update and merge changes at once: `git pull`
+
+#### Diverged remote
+- Pull changes and rebase local: `git pull --rebase`
 
 ## Branches
 
@@ -179,7 +187,8 @@ Undo rebase
 ## Tags
 - Associate a commit with a searchable tag.
 - See tags `git fetch —tags` and `git tag -l`
-- Create tag:
+- Create tag: `git tag <tag>` ex: `git tag v1.0`
+- Create annotated tag: `git tag -a v1.0 "initial release"`
 - Delete a local tag:
 - Delete a tag on remote: `git push origin --delete  <tagname>`
 
@@ -188,3 +197,8 @@ Undo rebase
     1. `git gc --prune=now`
     2. `git remote prune origin`
 2. Branch diverged after rebase on a different machine. ` git fetch && git reset --hard`
+
+## Traversing History
+Moving between commits. 
+1. Moving upwards one commit: `git checkout HEAD^`
+2. Moving upwards 5 commits: `git checkout HEAD~5`
