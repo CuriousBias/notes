@@ -4,7 +4,7 @@
 - HEAD: currently checked out commit.
 
 ## Structure and definitions
-- Working directory < Staging area < Local Repo (HEAD) < Remote Repo (master) 
+- Working directory < Staging area < Local Repo (HEAD) < Remote Repo (main) 
 
 ### Best practices
 - Think of adding code in commits. 
@@ -24,7 +24,7 @@
 ### Modify
 - Just make usual edits to your local directory.
 - Create files `touch add file_name.txt`
-- Remove files ` rm file_name.txt`
+- Remove files `rm file_name.txt`
 - Remove directories `rm -r <specific/directory>`
 
 ### Stage
@@ -48,17 +48,28 @@
     - Remove all local commits and reset to version on remote: `git reset --hard origin/main`
 
 ### Push
+Arguments (commit or branch): `git push origin source:destination` 
+If destination does not exist. It will be created on remote.
+
 #### Push to remote
-- To add files committed files from local repo to remote repo `git push`
+- To add files committed files from local repo to remote repo: `git push`
+- To push with arguments (push feature branch to remote): `git push origin feature`
     
 #### Undo pushed commit (not actually removing commit, but creating new commit undoing changes).
 - Remove pushed commit: `git revert HEAD`
 - Remove specific commit (pushed): `git revert <commit_hash>`
     - Find commit hash in git history  `git log`
 
+### Fetch
+Download history from remote, but does not actually update local.
+- Download history of remote repo: `git fetch`
+- Actually update local repo: `git merge`
+Arguments (commit or branch): `git fetch origin source:destination`
+If destination does not exist, it will be created locally.
+
 ### Pull
-- Update local copy of remote repo: `git fetch`
-- Update actual local repo: `git merge`
+Combination of fetch and merge.
+Arguments (commit or branch): `git pull origin source:destination`
 - Update and merge changes at once: `git pull`
 
 #### Diverged remote
@@ -67,28 +78,28 @@
 ## Branches
 
 ### Create new feature branch from repo
-Creates feature branch to avoid working on master
-```
-    git checkout master
-    git pull origin master
-    git checkout -b <feature/branch>
+Creates feature branch to avoid working on main
+    ```
+    git checkout main
+    git pull origin main
+    git checkout -b <feature>
     git add -a -m "commit some change"
-    git push --set-upstream origin <feature/branch>
-```
+    git push origin --set-upstream <feature>
+    ```
 
-### Merge feature branch onto master
+### Merge feature branch onto main
 
 ```terminal
 git switch <feature/branch>
 git pull 
-git switch master
+git switch main
 git pull
-git merge --no-ff --no-commit <feature/branch>
+git merge --no-ff --no-commit branch
 # if conflicts
 git status
 
 # if no conflicts
-git commit -m 'merge feature/branch'
+git commit -m "merge branch"
 git push
 ```
 
@@ -98,36 +109,47 @@ git push
 2. New command `git switch <branch>`
 
 ### See difference between two branches
-- `git log <branch> ^<master>`
+- `git diff <branch1> <branch2>`
 - escape from long printout with ":" followed by "q"
 
-### Rebase
-Reorders commits to be in order at current head of master
-1. Rebase onto another branch (usually master)
+### Merge vs Rebase
+- Both methods to update one branch to match another.
+
+#### Merge
+Pro: No change in history.
+Con: Reorganization is messy.
+1. Merge another branch onto HEAD: `git merge branch1`
+
+#### Rebase
+Pro: Results in clean history.
+Con: Reorders commits which alters history.
+
+1. Move branch2 commits below branch1 (order of arguments same as order or commits): `git rebase branch1 branch2`
+2. Rebase onto another branch (usually main)
 - This will keep all commits intact
-    1. Checkout master `git checkout master`
-    2. Updated to latest version of master `git pull origin master`
+    1. Checkout main `git checkout main`
+    2. Updated to latest version of main `git pull origin main`
     3. Switch to feature branch `git switch <feature_branch>`
-    4. Initiate rebase `git rebase master`
+    4. Initiate rebase `git rebase main`
             - go through rebase steps
     5. Save any changes (shouldn't there be no changes?)
     6. Don't forget to force **Push** changes `git push -f`
-2. Simple interactive rebase to squash commits (reduce number)
+3. Simple interactive rebase to squash commits (reduce number)
     1. Same first 3 steps to checkout, pull origin and switch to feature
     2. Initiate rebase `git rebase -i HEAD~5` (5 for five commits)
-        Can also just do squash and rebase in one step with `git rebase -i master`
+        Can also just do squash and rebase in one step with `git rebase -i main`
     3. replace "pick" with "s" for squash at beginning of each commit. 
         - But leave the first commit as "pick" or change to "r" to edit message
     4. Follow along in text edit (Vim)
     5. "esc" + ":wq" to write and quit Vim editor. 
     6. Don't forget to force **Push** changes `git push -f`
-3. Complex interactive rebase to resolve merge conflicts (due to two people working on same file)
+4. Complex interactive rebase to resolve merge conflicts (due to two people working on same file)
     1. Navigate to repository
-    2. Checkout master `git checkout master`
-    3. Updated to latest version of master `git pull origin master`
+    2. Checkout main `git checkout main`
+    3. Updated to latest version of main `git pull origin main`
     4. Switch to feature branch `git switch <feature_branch>`
     5. Do simple interactive rebase to squash all commits of feature branch into one commit. 
-    6. Initiate rebase `git rebase master`
+    6. Initiate rebase `git rebase main`
     6. Go through files to resolve each conflict individually. 
         1. Find merge conflics
             ```
@@ -174,10 +196,7 @@ Undo rebase
 4. Force push changes
 3. Start Pull Request
 
-## Merge
-
 ## Renaming 
-
 ### Branch
 1. Rename local  `git branch -m <old> <new>`
 2. Push to new remote branch  `git push -u origin <new>`
