@@ -6,7 +6,19 @@ Tool to manage dependencies
 
 `% poetry show --tree`
 
+### Env
+- Create new virtualenv: `poetry env use python3.8`
+- Create in cwd: `poetry config virtualenvs.in-project true --local`
+- Set global: `poetry config virtualenvs.in-project true`
+- Activate: `poetry shell`
+- See info: `poetry env info`
+- List envs associated with project: `poetry env list`
+- Delete one: `poetry env remove <name> (get name from info).
+- Install dependencies: `poetry install` or `poetry install —no-dev`
+
 ## Dependencies
+1. Lock and update all: `poetry lock`
+2. Lock but do not update existing: `poetry lock --no-update`
 
 ### Tilde (~) - More Conservative:
 - Allows patch-level updates only
