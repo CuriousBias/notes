@@ -59,6 +59,7 @@ To generate this message, Docker took the following steps:
 
         2. Build docker image and provide a name to image (-t) `% docker build -t est-mysql .`
         3. View images `% docker images`
+        4. Remove images without active container: `docker images prune -a`
 2. Run the image to create container as runtime environment.
     1. Run docker image `% docker run —name my-container -d -e VAR_A=var -e VAR_B=var_b -p 3306:3306`
         - specific environment variables (-e) 
