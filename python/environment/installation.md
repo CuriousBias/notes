@@ -20,22 +20,9 @@ pip install jupytherlab
 Uses package manager Homebrew https://brew.sh
 - browse brew site for info about what is available to install
 - Can also look up which version is latest in homebrew formulae
-
-1. Install Xcode from App store https://developer.apple.com/xcode/
-2. Add command line tools `% Xcode-select --install`
-3. Install homebrew https://brew.sh/#install
-    `% /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`
-4. Add Homebrew to your PATH. Seems like brew gets added to path automatically now.
-    ` % echo 'eval $(/opt/homebrew/bin/brew shellenv)' >> /Users/kurt/.zprofile`
-    ` % eval $(/opt/homebrew/bin/brew shellenv)`
-5. Test brew install
-` % brew help 
-    % brew analytics off
-    % brew doctor
-    % brew cleanup
-`
-6. Install desired version of python. `% brew install python@3.10`
-7. Add symlinks for python 
+1. Install homebrew
+2. Install desired version of python. `% brew install python@3.10`
+3. Add symlinks for python 
     - Seems to be done automatically now. 
     - This adds to PATH through ~/.zshrc file (sourced when starting terminal) 
     - Double check that directory for libexec is correct (this one has the symlinks)!
@@ -45,13 +32,13 @@ Uses package manager Homebrew https://brew.sh
         - python & pip @ /usr/local/bin/python3
         - symlinks @ /usr/local/opt/python@3.9.libexec/bin
 
-7. Close Terminal and reopen to check if successful
+4. Close Terminal and reopen to check if successful
         `% python --version`
         `% pip --version`
-8. Upgrade git `% brew upgrade git`
+5. Upgrade git `% brew upgrade git`
     - This will install a new version of git connected to homebrew and add symlinks to make it default. 
 
-9. Install IDE `% brew install --cask visual-studio-code`
+6. Install IDE `% brew install --cask visual-studio-code`
 
 ## Dependency location
 1. Global
