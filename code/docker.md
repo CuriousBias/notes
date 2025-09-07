@@ -137,3 +137,11 @@ USER: User to run RUN, CMD, and/or ENTRYPOINT instructions
 - Create machine `% docker-machine create -d virtualbox my-machine`
 - Start machine `% docker-machine start my-machine`
 - Stop machine  `% docker-machine stop my-machine`
+
+## Images and containers
+Images: images downloaded but not associated with a container: `docker rmi`
+Containers: images which have been run. Active: `docker ps`, inactive + active: `docker ps -a`
+
+- Remove all images not associated with container: `docker container prune`
+- Remove all images: `docker rmi $(docker images -q)`
+

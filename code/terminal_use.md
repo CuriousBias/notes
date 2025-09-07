@@ -48,3 +48,8 @@
 
 ### Secure Copy
 - Copy files from one host to another `% scp user@host:/path/remote/file /path/local/file`
+
+
+- Search terminal history: `history | grep "search_term"` or use control + R
+- View kernel messages: `dmesg` - displays kernel ring buffer messages including hardware info, driver initialization, and system errors
+- See exit code from previously run command: `echo $?`
