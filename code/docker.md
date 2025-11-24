@@ -145,3 +145,23 @@ Containers: images which have been run. Active: `docker ps`, inactive + active: 
 - Remove all images not associated with container: `docker container prune`
 - Remove all images: `docker rmi $(docker images -q)`
 
+## Docker cleanup
+
+Containers
+- `docker container prune`: Stopped containers only
+Images
+- `docker image prune`: Dangling images only (none tagged images)
+- `docker image prune --all`: All unused images
+Volumes
+- `docker volume prune`: Unused volumes
+Networks
+- `docker network prune`: Unused networks
+Build Cache
+- `docker builder prune`: Unused layers
+- `docker builder prune --all`: All layers
+
+### System
+- `docker system prune`: Containers + dangling images + networks + build cache
+- `docker system prune --all`: Containers + all unused images + networks + build cache
+- `docker system prune --volumes`: Adds unused volumes to system prune
+- `docker system prune --all --volumes`: Everything unused

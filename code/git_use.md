@@ -120,6 +120,15 @@ Pro: No change in history.
 Con: Reorganization is messy.
 1. Merge another branch onto HEAD: `git merge branch1`
 
+Merge commit
+```
+git switch mainline
+git pull
+git switch feature
+git merge origin/mainline  # then complete commit
+git push
+```
+
 #### Rebase
 Pro: Results in clean history.
 Con: Reorders commits which alters history.
